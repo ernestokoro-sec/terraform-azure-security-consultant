@@ -1,0 +1,8 @@
+resource_group_name = "tf-dev-rg"
+location            = "uksouth"
+
+tags = {
+  Environment = "dev"
+  Project     = "terraform-azure"
+  ManagedBy   = "Terraform"
+}
