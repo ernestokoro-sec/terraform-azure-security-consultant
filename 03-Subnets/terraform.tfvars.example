@@ -1,0 +1,39 @@
+resource_group_name = "tf-dev-rg"
+
+virtual_network_name = "dev-uks-vnet"
+
+subnets = {
+
+  web = {
+
+    name = "dev-web-subnet"
+
+    address_prefixes = ["10.10.1.0/24"]
+
+  }
+
+  app = {
+
+    name = "dev-app-subnet"
+
+    address_prefixes = ["10.10.2.0/24"]
+
+  }
+
+  mgmt = {
+
+    name = "dev-mgmt-subnet"
+
+    address_prefixes = ["10.10.3.0/24"]
+
+  }
+
+  private_endpoint = {
+
+    name = "dev-private-endpoint-subnet"
+
+    address_prefixes = ["10.10.254.0/26"]
+
+  }
+
+}
