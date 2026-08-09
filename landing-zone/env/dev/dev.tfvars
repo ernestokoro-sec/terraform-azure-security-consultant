@@ -1,15 +1,92 @@
 resource_group_name = "tf-dev-rg"
 
-location = "uksouth"
-
+location    = "uksouth"
 environment = "dev"
 
-route_tables = {
+vnet_name     = "dev-uks-vnet"
+address_space = ["10.10.0.0/16"]
 
+subnets = {
+  web = {
+    name             = "dev-web-subnet"
+    address_prefixes = ["10.10.1.0/24"]
+  }
+
+  app = {
+    name             = "dev-app-subnet"
+    address_prefixes = ["10.10.2.0/24"]
+  }
+
+  mgmt = {
+    name             = "dev-mgmt-subnet"
+    address_prefixes = ["10.10.3.0/24"]
+  }
+
+  private_endpoint = {
+    name             = "dev-private-endpoint-subnet"
+    address_prefixes = ["10.10.254.0/26"]
+  }
+}
+
+network_security_groups = {
+  web = {
+    name = "dev-web-nsg"
+  }
+
+  app = {
+    name = "dev-app-nsg"
+  }
+
+  mgmt = {
+    name = "dev-mgmt-nsg"
+  }
+}
+
+security_rules = {
+  allow-http = {
+    name                       = "Allow-HTTP"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    nsg_key                    = "web"
+  }
+
+  allow-https = {
+    name                       = "Allow-HTTPS"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+    nsg_key                    = "web"
+  }
+
+  allow-rdp = {
+    name                       = "Allow-RDP"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "90.204.93.5/32"
+    destination_address_prefix = "*"
+    nsg_key                    = "mgmt"
+  }
+}
+
+route_tables = {
   web = {
     name                          = "dev-web-rt"
     bgp_route_propagation_enabled = true
-    subnet_id                     = "/subscriptions/d28805e9-dd1d-40af-b97d-6e05ae66d34c/resourceGroups/tf-dev-rg/providers/Microsoft.Network/virtualNetworks/dev-uks-vnet/subnets/dev-web-subnet"
 
     routes = {
       block-private-10 = {
@@ -22,7 +99,6 @@ route_tables = {
   app = {
     name                          = "dev-app-rt"
     bgp_route_propagation_enabled = true
-    subnet_id                     = "/subscriptions/d28805e9-dd1d-40af-b97d-6e05ae66d34c/resourceGroups/tf-dev-rg/providers/Microsoft.Network/virtualNetworks/dev-uks-vnet/subnets/dev-app-subnet"
 
     routes = {
       block-private-10 = {
@@ -35,7 +111,6 @@ route_tables = {
   mgmt = {
     name                          = "dev-mgmt-rt"
     bgp_route_propagation_enabled = true
-    subnet_id                     = "/subscriptions/d28805e9-dd1d-40af-b97d-6e05ae66d34c/resourceGroups/tf-dev-rg/providers/Microsoft.Network/virtualNetworks/dev-uks-vnet/subnets/dev-mgmt-subnet"
 
     routes = {
       block-private-10 = {
@@ -48,6 +123,6 @@ route_tables = {
 
 tags = {
   Environment = "dev"
+  Project     = "terraform-azure"
   ManagedBy   = "Terraform"
-  Project     = "Azure Cloud Security Consultant Portfolio"
 }
