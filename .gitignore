@@ -10,9 +10,10 @@ errored.tfstate
 *.tfplan
 tfplan
 
-# Variable files that may contain secrets
-*.tfvars
-!*.tfvars.example
+# Ignore only automatic variable files that may contain secrets
+*.auto.tfvars
+*.auto.tfvars.json
+!env/**/*.tfvars
 
 # Crash logs
 crash.log
