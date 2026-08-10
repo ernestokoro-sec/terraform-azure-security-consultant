@@ -97,3 +97,17 @@ module "network_interface" {
 
   tags = var.tags
 }
+
+module "windows_vm" {
+  source = "./modules/windows-vm"
+
+  vm_name              = var.vm_name
+  resource_group_name  = module.resource_group.resource_group_name
+  location             = var.location
+  vm_size              = var.vm_size
+  admin_username       = var.admin_username
+  admin_password       = var.admin_password
+  network_interface_id = module.network_interface.network_interface_id
+
+  tags = var.tags
+}

@@ -127,3 +127,7 @@ tags = {
   ManagedBy   = "Terraform"
 }
 nic_name = "dev-mgmt-nic"
+
+vm_name        = "dev-win-vm-01"
+vm_size        = "Standard_B2s"
+admin_username = "devadmin"
