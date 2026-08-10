@@ -126,3 +126,4 @@ tags = {
   Project     = "terraform-azure"
   ManagedBy   = "Terraform"
 }
+nic_name = "dev-mgmt-nic"

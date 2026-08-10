@@ -64,3 +64,8 @@ variable "tags" {
   type    = map(string)
   default = {}
 }
+
+variable "nic_name" {
+  description = "Name of the management VM Network Interface"
+  type        = string
+}

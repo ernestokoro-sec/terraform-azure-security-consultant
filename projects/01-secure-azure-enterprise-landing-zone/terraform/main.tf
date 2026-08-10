@@ -87,3 +87,13 @@ module "route_tables" {
     }
   }
 }
+module "network_interface" {
+  source = "./modules/network-interface"
+
+  nic_name            = var.nic_name
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+  subnet_id           = module.subnets.subnet_ids["mgmt"]
+
+  tags = var.tags
+}
