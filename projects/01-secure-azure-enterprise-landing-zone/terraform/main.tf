@@ -98,6 +98,19 @@ module "network_interface" {
   tags = var.tags
 }
 
+module "bastion" {
+  source = "./modules/bastion"
+
+  bastion_name        = var.bastion_name
+  public_ip_name      = var.bastion_public_ip_name
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  bastion_subnet_id = module.subnets.subnet_ids["bastion"]
+
+  tags = var.tags
+}
+
 module "windows_vm" {
   source = "./modules/windows-vm"
 

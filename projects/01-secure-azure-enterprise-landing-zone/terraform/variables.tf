@@ -90,3 +90,13 @@ variable "admin_password" {
   type        = string
   sensitive   = true
 }
+
+variable "bastion_name" {
+  description = "Name of the Azure Bastion host"
+  type        = string
+}
+
+variable "bastion_public_ip_name" {
+  description = "Name of the Bastion public IP"
+  type        = string
+}
