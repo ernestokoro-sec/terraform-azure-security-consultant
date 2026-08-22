@@ -27,10 +27,10 @@ subnets = {
     address_prefixes = ["10.10.254.0/26"]
   }
 
- bastion = {
-  name             = "AzureBastionSubnet"
-  address_prefixes = ["10.10.250.0/26"]
- }
+  bastion = {
+    name             = "AzureBastionSubnet"
+    address_prefixes = ["10.10.250.0/26"]
+  }
 }
 
 network_security_groups = {
@@ -135,6 +135,8 @@ nic_name = "dev-mgmt-nic"
 
 bastion_name           = "dev-uks-bastion"
 bastion_public_ip_name = "dev-uks-bastion-pip"
+
+key_vault_name = "kvdevuks"
 
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"

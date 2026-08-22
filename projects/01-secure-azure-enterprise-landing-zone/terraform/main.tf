@@ -111,6 +111,24 @@ module "bastion" {
   tags = var.tags
 }
 
+module "key_vault" {
+  source = "./modules/key-vault"
+
+  key_vault_name      = var.key_vault_name
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  tags = var.tags
+}
+
+module "key_vault_rbac" {
+  source = "./modules/rbac"
+
+  scope                = module.key_vault.key_vault_id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = module.windows_vm.principal_id
+}
+
 module "windows_vm" {
   source = "./modules/windows-vm"
 
