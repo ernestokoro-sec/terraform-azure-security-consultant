@@ -129,6 +129,26 @@ module "key_vault_rbac" {
   principal_id         = module.windows_vm.principal_id
 }
 
+module "storage_account" {
+  source = "./modules/storage-account"
+
+  storage_account_name = var.storage_account_name
+  resource_group_name  = module.resource_group.resource_group_name
+  location             = var.location
+
+  tags = var.tags
+}
+
+module "private_dns" {
+  source = "./modules/private-dns"
+
+  resource_group_name = module.resource_group.resource_group_name
+  virtual_network_id  = module.network.virtual_network_id
+  private_dns_zones   = var.private_dns_zones
+
+  tags = var.tags
+}
+
 module "windows_vm" {
   source = "./modules/windows-vm"
 
@@ -139,6 +159,36 @@ module "windows_vm" {
   admin_username       = var.admin_username
   admin_password       = var.admin_password
   network_interface_id = module.network_interface.network_interface_id
+
+  tags = var.tags
+}
+
+module "private_endpoint" {
+  source = "./modules/private-endpoint"
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+  subnet_id           = module.subnets.subnet_ids["private_endpoint"]
+
+  private_endpoints = {
+    keyvault = {
+      name                           = "dev-keyvault-pe"
+      private_connection_resource_id = module.key_vault.key_vault_id
+      subresource_names              = ["vault"]
+      private_dns_zone_ids = [
+        module.private_dns.private_dns_zone_ids["keyvault"]
+      ]
+    }
+
+    blob = {
+      name                           = "dev-storage-blob-pe"
+      private_connection_resource_id = module.storage_account.storage_account_id
+      subresource_names              = ["blob"]
+      private_dns_zone_ids = [
+        module.private_dns.private_dns_zone_ids["blob"]
+      ]
+    }
+  }
 
   tags = var.tags
 }

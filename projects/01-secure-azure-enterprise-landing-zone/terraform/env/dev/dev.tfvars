@@ -73,19 +73,6 @@ security_rules = {
     destination_address_prefix = "*"
     nsg_key                    = "web"
   }
-
-  allow-rdp = {
-    name                       = "Allow-RDP"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "3389"
-    source_address_prefix      = "90.204.93.5/32"
-    destination_address_prefix = "*"
-    nsg_key                    = "mgmt"
-  }
 }
 
 route_tables = {
@@ -137,6 +124,18 @@ bastion_name           = "dev-uks-bastion"
 bastion_public_ip_name = "dev-uks-bastion-pip"
 
 key_vault_name = "kvdevuks"
+
+storage_account_name = "stdevuks001"
+
+private_dns_zones = {
+  keyvault = {
+    name = "privatelink.vaultcore.azure.net"
+  }
+
+  blob = {
+    name = "privatelink.blob.core.windows.net"
+  }
+}
 
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"

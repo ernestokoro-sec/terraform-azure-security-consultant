@@ -99,9 +99,23 @@ variable "bastion_name" {
 variable "bastion_public_ip_name" {
   description = "Name of the Bastion public IP"
   type        = string
+
+}
+variable "storage_account_name" {
+  description = "Name of the Azure Storage Account"
+  type        = string
 }
 
 variable "key_vault_name" {
   description = "Name of the Azure Key Vault"
   type        = string
 }
+
+variable "private_dns_zones" {
+  description = "Private DNS zones used by Azure Private Endpoints"
+
+  type = map(object({
+    name = string
+  }))
+}
+
