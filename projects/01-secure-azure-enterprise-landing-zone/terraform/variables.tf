@@ -154,3 +154,9 @@ variable "network_watcher_resource_group_name" {
   description = "Resource Group containing Network Watcher"
   type        = string
 }
+
+variable "enable_defender_for_servers" {
+  description = "Enable Microsoft Defender for Servers"
+  type        = bool
+  default     = true
+}

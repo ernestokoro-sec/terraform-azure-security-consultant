@@ -148,6 +148,8 @@ flow_log_storage_account_name = "stdevuksflowlogs001"
 network_watcher_name                = "NetworkWatcher_uksouth"
 network_watcher_resource_group_name = "NetworkWatcherRG"
 
+enable_defender_for_servers = true
+
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"
 admin_username = "devadmin"

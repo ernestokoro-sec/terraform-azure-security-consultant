@@ -235,3 +235,10 @@ module "vnet_flow_logs" {
 
   tags = var.tags
 }
+
+
+module "defender_for_cloud" {
+  source = "./modules/defender-for-cloud"
+
+  enable_defender_for_servers = var.enable_defender_for_servers
+}
