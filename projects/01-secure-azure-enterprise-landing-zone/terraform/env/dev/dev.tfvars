@@ -137,6 +137,17 @@ private_dns_zones = {
   }
 }
 
+log_analytics_workspace_name = "dev-uks-law"
+log_analytics_retention_days = 30
+
+key_vault_diagnostic_setting_name = "dev-keyvault-diagnostics"
+
+flow_log_name                 = "dev-uks-vnet-flow-log"
+flow_log_storage_account_name = "stdevuksflowlogs001"
+
+network_watcher_name                = "NetworkWatcher_uksouth"
+network_watcher_resource_group_name = "NetworkWatcherRG"
+
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"
 admin_username = "devadmin"

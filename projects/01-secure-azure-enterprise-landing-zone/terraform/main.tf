@@ -192,3 +192,46 @@ module "private_endpoint" {
 
   tags = var.tags
 }
+
+module "log_analytics" {
+  source = "./modules/log-analytics"
+
+  log_analytics_workspace_name = var.log_analytics_workspace_name
+  location                     = var.location
+  resource_group_name          = module.resource_group.resource_group_name
+  retention_in_days            = var.log_analytics_retention_days
+
+  tags = var.tags
+}
+
+
+module "key_vault_diagnostics" {
+  source = "./modules/diagnostic-settings"
+
+  diagnostic_setting_name    = var.key_vault_diagnostic_setting_name
+  target_resource_id         = module.key_vault.key_vault_id
+  log_analytics_workspace_id = module.log_analytics.log_analytics_workspace_id
+}
+
+module "vnet_flow_logs" {
+  source = "./modules/vnet-flow-logs"
+
+  flow_log_name                 = var.flow_log_name
+  flow_log_storage_account_name = var.flow_log_storage_account_name
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  network_watcher_name                = var.network_watcher_name
+  network_watcher_resource_group_name = var.network_watcher_resource_group_name
+
+  virtual_network_id = module.network.virtual_network_id
+
+  log_analytics_workspace_id     = module.log_analytics.log_analytics_workspace_id
+  log_analytics_workspace_guid   = module.log_analytics.workspace_id
+  log_analytics_workspace_region = var.location
+
+  retention_days = 30
+
+  tags = var.tags
+}

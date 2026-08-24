@@ -119,3 +119,38 @@ variable "private_dns_zones" {
   }))
 }
 
+variable "log_analytics_workspace_name" {
+  description = "Name of the Log Analytics Workspace"
+  type        = string
+}
+
+variable "log_analytics_retention_days" {
+  description = "Number of days to retain Log Analytics data"
+  type        = number
+  default     = 30
+}
+
+variable "key_vault_diagnostic_setting_name" {
+  description = "Name of the Key Vault Diagnostic Setting"
+  type        = string
+}
+
+variable "flow_log_name" {
+  description = "Name of the Virtual Network Flow Log"
+  type        = string
+}
+
+variable "flow_log_storage_account_name" {
+  description = "Storage Account used for VNet flow logs"
+  type        = string
+}
+
+variable "network_watcher_name" {
+  description = "Name of the regional Network Watcher"
+  type        = string
+}
+
+variable "network_watcher_resource_group_name" {
+  description = "Resource Group containing Network Watcher"
+  type        = string
+}
