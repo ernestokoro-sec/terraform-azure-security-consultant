@@ -150,6 +150,21 @@ network_watcher_resource_group_name = "NetworkWatcherRG"
 
 enable_defender_for_servers = true
 
+hub_vnet_name    = "dev-hub-vnet"
+hub_address_space = ["10.20.0.0/16"]
+
+spoke_vnets = {
+  spoke1 = {
+    name          = "dev-spoke1-vnet"
+    address_space = ["10.30.0.0/16"]
+  }
+
+  spoke2 = {
+    name          = "dev-spoke2-vnet"
+    address_space = ["10.40.0.0/16"]
+  }
+}
+
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"
 admin_username = "devadmin"

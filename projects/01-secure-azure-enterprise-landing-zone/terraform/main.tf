@@ -242,11 +242,23 @@ module "defender_for_cloud" {
   enable_defender_for_servers = var.enable_defender_for_servers
 }
 
-
 data "azurerm_subscription" "current" {}
 
 module "azure_policy" {
   source = "./modules/azure-policy"
 
   policy_assignment_scope = data.azurerm_subscription.current.id
+}
+
+module "hub_spoke_network" {
+  source = "./modules/hub-spoke-network"
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  hub_vnet_name    = var.hub_vnet_name
+  hub_address_space = var.hub_address_space
+  spoke_vnets       = var.spoke_vnets
+
+  tags = var.tags
 }

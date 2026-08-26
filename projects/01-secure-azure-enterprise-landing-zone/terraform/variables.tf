@@ -160,3 +160,22 @@ variable "enable_defender_for_servers" {
   type        = bool
   default     = true
 }
+
+variable "hub_vnet_name" {
+  description = "Name of the hub VNet"
+  type        = string
+}
+
+variable "hub_address_space" {
+  description = "Address space for the hub VNet"
+  type        = list(string)
+}
+
+variable "spoke_vnets" {
+  description = "Map of spoke VNets"
+
+  type = map(object({
+    name          = string
+    address_space = list(string)
+  }))
+}
