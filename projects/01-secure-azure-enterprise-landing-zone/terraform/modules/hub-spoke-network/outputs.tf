@@ -25,3 +25,17 @@ output "spoke_vnet_names" {
     key => vnet.name
   }
 }
+
+output "spoke_workload_subnet_ids" {
+  description = "Resource IDs of the workload subnets in each spoke"
+
+  value = {
+    for key, subnet in azurerm_subnet.spoke_workload :
+    key => subnet.id
+  }
+}
+
+output "azure_firewall_subnet_id" {
+  description = "Resource ID of AzureFirewallSubnet in the hub VNet"
+  value       = azurerm_subnet.azure_firewall.id
+}

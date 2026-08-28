@@ -253,12 +253,41 @@ module "azure_policy" {
 module "hub_spoke_network" {
   source = "./modules/hub-spoke-network"
 
+  location                     = var.location
+  resource_group_name          = module.resource_group.resource_group_name
+  hub_vnet_name                = var.hub_vnet_name
+  hub_address_space            = var.hub_address_space
+  spoke_vnets                  = var.spoke_vnets
+  azure_firewall_subnet_prefix = var.azure_firewall_subnet_prefix
+
+  tags = var.tags
+}
+
+module "azure_firewall" {
+  source = "./modules/azure-firewall"
+
+  firewall_name        = var.firewall_name
+  firewall_policy_name = var.firewall_policy_name
+  public_ip_name       = var.firewall_public_ip_name
+
   location            = var.location
   resource_group_name = module.resource_group.resource_group_name
 
-  hub_vnet_name    = var.hub_vnet_name
-  hub_address_space = var.hub_address_space
-  spoke_vnets       = var.spoke_vnets
+  firewall_subnet_id = module.hub_spoke_network.azure_firewall_subnet_id
+
+  spoke_address_spaces = var.spoke_address_spaces
 
   tags = var.tags
+}
+
+module "spoke_routing" {
+  source = "./modules/spoke-routing"
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  spoke_subnet_ids    = module.hub_spoke_network.spoke_workload_subnet_ids
+  firewall_private_ip = module.azure_firewall.firewall_private_ip
+  east_west_routes    = var.east_west_routes
+  tags                = var.tags
 }

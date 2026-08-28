@@ -41,3 +41,19 @@ resource "azurerm_virtual_network_peering" "spoke_to_hub" {
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
 }
+
+resource "azurerm_subnet" "spoke_workload" {
+  for_each = var.spoke_vnets
+
+  name                 = each.value.workload_subnet_name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.spoke[each.key].name
+  address_prefixes     = each.value.workload_subnet_prefix
+}
+
+resource "azurerm_subnet" "azure_firewall" {
+  name                 = "AzureFirewallSubnet"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.hub.name
+  address_prefixes     = var.azure_firewall_subnet_prefix
+}

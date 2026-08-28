@@ -175,7 +175,44 @@ variable "spoke_vnets" {
   description = "Map of spoke VNets"
 
   type = map(object({
-    name          = string
-    address_space = list(string)
+    name                   = string
+    address_space          = list(string)
+    workload_subnet_name   = string
+    workload_subnet_prefix = list(string)
   }))
+}
+
+variable "azure_firewall_subnet_prefix" {
+  description = "Address prefix for AzureFirewallSubnet"
+  type        = list(string)
+}
+
+variable "firewall_name" {
+  description = "Name of the Azure Firewall"
+  type        = string
+}
+
+variable "firewall_policy_name" {
+  description = "Name of the Azure Firewall Policy"
+  type        = string
+}
+
+variable "firewall_public_ip_name" {
+  description = "Name of the Azure Firewall Public IP"
+  type        = string
+}
+
+variable "east_west_routes" {
+  description = "Routes used to force spoke-to-spoke traffic through Azure Firewall"
+
+  type = map(object({
+    source_spoke       = string
+    destination_prefix = string
+    route_name         = string
+  }))
+}
+
+variable "spoke_address_spaces" {
+  description = "Address spaces used by spoke VNets"
+  type        = list(string)
 }

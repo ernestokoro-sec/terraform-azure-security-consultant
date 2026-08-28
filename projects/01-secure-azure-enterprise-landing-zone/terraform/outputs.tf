@@ -18,3 +18,23 @@ output "spoke_vnet_ids" {
   description = "Resource IDs of the spoke VNets"
   value       = module.hub_spoke_network.spoke_vnet_ids
 }
+
+output "spoke_workload_subnet_ids" {
+  description = "Resource IDs of the workload subnets in the spoke VNets"
+  value       = module.hub_spoke_network.spoke_workload_subnet_ids
+}
+
+output "azure_firewall_private_ip" {
+  description = "Private IP address of the Azure Firewall"
+  value       = module.azure_firewall.firewall_private_ip
+}
+
+output "azure_firewall_public_ip" {
+  description = "Public IP address of the Azure Firewall"
+  value       = module.azure_firewall.firewall_public_ip
+}
+
+output "spoke_route_table_ids" {
+  description = "Resource IDs of the spoke route tables"
+  value       = module.spoke_routing.spoke_route_table_ids
+}

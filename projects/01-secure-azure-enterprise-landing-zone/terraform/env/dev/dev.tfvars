@@ -150,20 +150,50 @@ network_watcher_resource_group_name = "NetworkWatcherRG"
 
 enable_defender_for_servers = true
 
-hub_vnet_name    = "dev-hub-vnet"
+hub_vnet_name     = "dev-hub-vnet"
 hub_address_space = ["10.20.0.0/16"]
+
 
 spoke_vnets = {
   spoke1 = {
-    name          = "dev-spoke1-vnet"
-    address_space = ["10.30.0.0/16"]
+    name                   = "dev-spoke1-vnet"
+    address_space          = ["10.30.0.0/16"]
+    workload_subnet_name   = "dev-spoke1-workload-subnet"
+    workload_subnet_prefix = ["10.30.1.0/24"]
   }
 
   spoke2 = {
-    name          = "dev-spoke2-vnet"
-    address_space = ["10.40.0.0/16"]
+    name                   = "dev-spoke2-vnet"
+    address_space          = ["10.40.0.0/16"]
+    workload_subnet_name   = "dev-spoke2-workload-subnet"
+    workload_subnet_prefix = ["10.40.1.0/24"]
   }
 }
+
+azure_firewall_subnet_prefix = ["10.20.1.0/26"]
+
+firewall_name           = "dev-uks-azfw"
+firewall_policy_name    = "dev-uks-azfw-policy"
+firewall_public_ip_name = "dev-uks-azfw-pip"
+
+east_west_routes = {
+  spoke1_to_spoke2 = {
+    source_spoke       = "spoke1"
+    destination_prefix = "10.40.0.0/16"
+    route_name         = "to-spoke2-via-firewall"
+  }
+
+  spoke2_to_spoke1 = {
+    source_spoke       = "spoke2"
+    destination_prefix = "10.30.0.0/16"
+    route_name         = "to-spoke1-via-firewall"
+  }
+}
+
+spoke_address_spaces = [
+  "10.30.0.0/16",
+  "10.40.0.0/16"
+]
 
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"
