@@ -28,6 +28,7 @@ resource "azurerm_virtual_network_peering" "hub_to_spoke" {
 
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
+  allow_gateway_transit        = true
 }
 
 resource "azurerm_virtual_network_peering" "spoke_to_hub" {
@@ -40,6 +41,7 @@ resource "azurerm_virtual_network_peering" "spoke_to_hub" {
 
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
+  use_remote_gateways          = true
 }
 
 resource "azurerm_subnet" "spoke_workload" {
@@ -56,4 +58,11 @@ resource "azurerm_subnet" "azure_firewall" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.hub.name
   address_prefixes     = var.azure_firewall_subnet_prefix
+}
+
+resource "azurerm_subnet" "gateway" {
+  name                 = "GatewaySubnet"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.hub.name
+  address_prefixes     = var.gateway_subnet_prefix
 }

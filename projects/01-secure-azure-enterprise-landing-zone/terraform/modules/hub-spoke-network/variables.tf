@@ -39,3 +39,8 @@ variable "azure_firewall_subnet_prefix" {
   description = "Address prefix for AzureFirewallSubnet in the hub VNet"
   type        = list(string)
 }
+
+variable "gateway_subnet_prefix" {
+  description = "Address prefix for GatewaySubnet in the hub VNet"
+  type        = list(string)
+}

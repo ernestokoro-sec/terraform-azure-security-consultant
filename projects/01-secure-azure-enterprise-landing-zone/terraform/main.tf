@@ -259,6 +259,7 @@ module "hub_spoke_network" {
   hub_address_space            = var.hub_address_space
   spoke_vnets                  = var.spoke_vnets
   azure_firewall_subnet_prefix = var.azure_firewall_subnet_prefix
+  gateway_subnet_prefix        = var.gateway_subnet_prefix
 
   tags = var.tags
 }
@@ -275,7 +276,8 @@ module "azure_firewall" {
 
   firewall_subnet_id = module.hub_spoke_network.azure_firewall_subnet_id
 
-  spoke_address_spaces = var.spoke_address_spaces
+  spoke_address_spaces      = var.spoke_address_spaces
+  onpremises_address_spaces = var.onpremises_address_spaces
 
   tags = var.tags
 }
@@ -289,5 +291,53 @@ module "spoke_routing" {
   spoke_subnet_ids    = module.hub_spoke_network.spoke_workload_subnet_ids
   firewall_private_ip = module.azure_firewall.firewall_private_ip
   east_west_routes    = var.east_west_routes
+  hybrid_routes       = var.hybrid_routes
   tags                = var.tags
+}
+
+module "vpn_gateway" {
+  source = "./modules/vpn-gateway"
+
+  vpn_gateway_name           = var.vpn_gateway_name
+  vpn_gateway_public_ip_name = var.vpn_gateway_public_ip_name
+  vpn_gateway_sku            = var.vpn_gateway_sku
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  gateway_subnet_id    = module.hub_spoke_network.gateway_subnet_id
+  firewall_private_ip  = module.azure_firewall.firewall_private_ip
+  spoke_address_spaces = var.spoke_address_spaces
+
+  tags = var.tags
+}
+
+module "local_network_gateway" {
+  source = "./modules/local-network-gateway"
+
+  local_network_gateway_name = var.local_network_gateway_name
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  onpremises_gateway_address = var.onpremises_gateway_address
+  onpremises_address_spaces  = var.onpremises_address_spaces
+
+  tags = var.tags
+}
+
+module "vpn_connection" {
+  source = "./modules/vpn-connection"
+
+  vpn_connection_name = var.vpn_connection_name
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  virtual_network_gateway_id = module.vpn_gateway.vpn_gateway_id
+  local_network_gateway_id   = module.local_network_gateway.local_network_gateway_id
+
+  shared_key = var.vpn_shared_key
+
+  tags = var.tags
 }

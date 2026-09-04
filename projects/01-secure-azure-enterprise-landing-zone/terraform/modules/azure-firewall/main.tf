@@ -55,6 +55,21 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
       destination_addresses = var.spoke_address_spaces
       destination_ports     = ["*"]
     }
+    rule {
+      name                  = "allow-spoke-to-onprem"
+      protocols             = ["Any"]
+      source_addresses      = var.spoke_address_spaces
+      destination_addresses = var.onpremises_address_spaces
+      destination_ports     = ["*"]
+    }
+
+    rule {
+      name                  = "allow-onprem-to-spoke"
+      protocols             = ["Any"]
+      source_addresses      = var.onpremises_address_spaces
+      destination_addresses = var.spoke_address_spaces
+      destination_ports     = ["*"]
+    }
   }
 
   application_rule_collection {

@@ -39,3 +39,8 @@ output "azure_firewall_subnet_id" {
   description = "Resource ID of AzureFirewallSubnet in the hub VNet"
   value       = azurerm_subnet.azure_firewall.id
 }
+
+output "gateway_subnet_id" {
+  description = "Resource ID of GatewaySubnet in the hub VNet"
+  value       = azurerm_subnet.gateway.id
+}

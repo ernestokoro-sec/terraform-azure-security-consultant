@@ -38,3 +38,8 @@ variable "spoke_address_spaces" {
   description = "Address spaces of spoke VNets allowed for east-west traffic"
   type        = list(string)
 }
+
+variable "onpremises_address_spaces" {
+  description = "On-premises address spaces allowed to communicate with spoke VNets through Azure Firewall"
+  type        = list(string)
+}

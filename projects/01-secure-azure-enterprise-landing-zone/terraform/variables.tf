@@ -216,3 +216,60 @@ variable "spoke_address_spaces" {
   description = "Address spaces used by spoke VNets"
   type        = list(string)
 }
+
+
+variable "gateway_subnet_prefix" {
+  description = "Address prefix for GatewaySubnet in the hub VNet"
+  type        = list(string)
+}
+
+variable "vpn_gateway_name" {
+  description = "Name of the Azure VPN Gateway"
+  type        = string
+}
+
+variable "vpn_gateway_public_ip_name" {
+  description = "Name of the Public IP used by the Azure VPN Gateway"
+  type        = string
+}
+
+variable "vpn_gateway_sku" {
+  description = "SKU used by the Azure VPN Gateway"
+  type        = string
+}
+
+variable "local_network_gateway_name" {
+  description = "Name of the Azure Local Network Gateway"
+  type        = string
+}
+
+variable "onpremises_gateway_address" {
+  description = "Public IP address of the on-premises VPN device"
+  type        = string
+}
+
+variable "onpremises_address_spaces" {
+  description = "Private network address spaces located behind the on-premises VPN device"
+  type        = list(string)
+}
+
+variable "vpn_connection_name" {
+  description = "Name of the Site-to-Site VPN connection"
+  type        = string
+}
+
+variable "vpn_shared_key" {
+  description = "Pre-shared key used to secure the Site-to-Site VPN connection"
+  type        = string
+  sensitive   = true
+}
+
+variable "hybrid_routes" {
+  description = "Routes used to force spoke-to-on-premises traffic through Azure Firewall"
+
+  type = map(object({
+    source_spoke       = string
+    destination_prefix = string
+    route_name         = string
+  }))
+}

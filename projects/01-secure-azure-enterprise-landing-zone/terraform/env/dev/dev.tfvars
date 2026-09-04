@@ -188,12 +188,42 @@ east_west_routes = {
     destination_prefix = "10.30.0.0/16"
     route_name         = "to-spoke1-via-firewall"
   }
+
 }
+
+hybrid_routes = {
+  spoke1_to_onprem = {
+    source_spoke       = "spoke1"
+    destination_prefix = "192.168.0.0/16"
+    route_name         = "to-onprem-via-firewall"
+  }
+
+  spoke2_to_onprem = {
+    source_spoke       = "spoke2"
+    destination_prefix = "192.168.0.0/16"
+    route_name         = "to-onprem-via-firewall"
+  }
+}
+
+gateway_subnet_prefix = ["10.20.2.0/27"]
 
 spoke_address_spaces = [
   "10.30.0.0/16",
   "10.40.0.0/16"
 ]
+
+vpn_gateway_name           = "dev-uks-vpn-gw"
+vpn_gateway_public_ip_name = "dev-uks-vpn-gw-pip"
+vpn_gateway_sku            = "VpnGw1"
+
+local_network_gateway_name = "dev-uks-onprem-lng"
+
+onpremises_gateway_address = "203.0.113.10"
+
+onpremises_address_spaces = [
+  "192.168.0.0/16"
+]
+vpn_connection_name = "dev-uks-s2s-vpn-connection"
 
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"

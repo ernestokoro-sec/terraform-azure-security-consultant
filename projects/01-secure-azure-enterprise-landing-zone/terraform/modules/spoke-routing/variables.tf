@@ -33,3 +33,13 @@ variable "east_west_routes" {
     route_name         = string
   }))
 }
+
+variable "hybrid_routes" {
+  description = "Routes used to force spoke-to-on-premises traffic through Azure Firewall"
+
+  type = map(object({
+    source_spoke       = string
+    destination_prefix = string
+    route_name         = string
+  }))
+}

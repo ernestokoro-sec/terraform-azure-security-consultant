@@ -37,6 +37,21 @@ resource "azurerm_route" "east_west_to_firewall" {
   next_hop_in_ip_address = var.firewall_private_ip
 }
 
+resource "azurerm_route" "hybrid_to_firewall" {
+  for_each = var.hybrid_routes
+
+  name                = each.value.route_name
+  resource_group_name = var.resource_group_name
+
+  route_table_name = azurerm_route_table.spoke[
+    each.value.source_spoke
+  ].name
+
+  address_prefix         = each.value.destination_prefix
+  next_hop_type          = "VirtualAppliance"
+  next_hop_in_ip_address = var.firewall_private_ip
+}
+
 resource "azurerm_subnet_route_table_association" "spoke" {
   for_each = var.spoke_subnet_ids
 
