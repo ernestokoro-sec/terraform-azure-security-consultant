@@ -273,3 +273,64 @@ variable "hybrid_routes" {
     route_name         = string
   }))
 }
+
+variable "virtual_wan_name" {
+  description = "Name of the Azure Virtual WAN"
+  type        = string
+}
+
+variable "virtual_hub_name" {
+  description = "Name of the Azure Virtual Hub"
+  type        = string
+}
+
+variable "virtual_hub_address_prefix" {
+  description = "Address prefix assigned to the Azure Virtual Hub"
+  type        = string
+}
+
+variable "vwan_spoke_vnets" {
+  description = "Map of spoke VNets and workload subnets used by the Azure Virtual WAN architecture"
+
+  type = map(object({
+    name                     = string
+    address_space            = list(string)
+    workload_subnet_name     = string
+    workload_subnet_prefixes = list(string)
+  }))
+}
+
+variable "vwan_vpn_gateway_name" {
+  description = "Name of the Azure Virtual WAN VPN Gateway"
+  type        = string
+}
+
+variable "vwan_vpn_gateway_scale_unit" {
+  description = "Scale unit for the Azure Virtual WAN VPN Gateway"
+  type        = number
+}
+
+variable "vwan_vpn_site_name" {
+  description = "Name of the Azure Virtual WAN VPN Site"
+  type        = string
+}
+
+variable "vwan_onprem_address_cidrs" {
+  description = "Address prefixes used by the on-premises network"
+  type        = list(string)
+}
+
+variable "vwan_onprem_public_ip" {
+  description = "Public IP address of the on-premises VPN device"
+  type        = string
+}
+
+variable "vwan_vpn_connection_name" {
+  description = "Name of the Azure Virtual WAN VPN Gateway connection"
+  type        = string
+}
+
+variable "vwan_vpn_link_name" {
+  description = "Name of the Azure Virtual WAN VPN link connection"
+  type        = string
+}

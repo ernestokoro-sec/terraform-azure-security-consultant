@@ -341,3 +341,84 @@ module "vpn_connection" {
 
   tags = var.tags
 }
+
+module "virtual_wan" {
+  source = "./modules/virtual-wan"
+
+  virtual_wan_name           = var.virtual_wan_name
+  virtual_hub_name           = var.virtual_hub_name
+  virtual_hub_address_prefix = var.virtual_hub_address_prefix
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  tags = var.tags
+}
+
+module "vwan_spoke_network" {
+  source = "./modules/vwan-spoke-network"
+
+  resource_group_name = module.resource_group.resource_group_name
+  location            = var.location
+
+  spoke_vnets = var.vwan_spoke_vnets
+
+  tags = var.tags
+}
+
+module "vwan_hub_connections" {
+  source = "./modules/vwan-hub-connections"
+
+  virtual_hub_id = module.virtual_wan.virtual_hub_id
+
+  vnet_connections = {
+    spoke1 = {
+      name                      = "dev-vwan-spoke1-connection"
+      remote_virtual_network_id = module.vwan_spoke_network.spoke_vnet_ids["spoke1"]
+    }
+
+    spoke2 = {
+      name                      = "dev-vwan-spoke2-connection"
+      remote_virtual_network_id = module.vwan_spoke_network.spoke_vnet_ids["spoke2"]
+    }
+  }
+}
+
+module "vwan_vpn_gateway" {
+  source = "./modules/vwan-vpn-gateway"
+
+  vpn_gateway_name       = var.vwan_vpn_gateway_name
+  vpn_gateway_scale_unit = var.vwan_vpn_gateway_scale_unit
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  virtual_hub_id = module.virtual_wan.virtual_hub_id
+}
+
+module "vwan_vpn_site" {
+  source = "./modules/vwan-vpn-site"
+
+  vpn_site_name = var.vwan_vpn_site_name
+
+  location            = var.location
+  resource_group_name = module.resource_group.resource_group_name
+
+  virtual_wan_id = module.virtual_wan.virtual_wan_id
+
+  onprem_address_cidrs = var.vwan_onprem_address_cidrs
+  onprem_public_ip     = var.vwan_onprem_public_ip
+}
+
+module "vwan_vpn_connection" {
+  source = "./modules/vwan-vpn-connection"
+
+  vpn_connection_name = var.vwan_vpn_connection_name
+  vpn_link_name       = var.vwan_vpn_link_name
+
+  vpn_gateway_id   = module.vwan_vpn_gateway.vpn_gateway_id
+  vpn_site_id      = module.vwan_vpn_site.vpn_site_id
+  vpn_site_link_id = module.vwan_vpn_site.vpn_site_link_id
+
+  shared_key = var.vpn_shared_key
+}

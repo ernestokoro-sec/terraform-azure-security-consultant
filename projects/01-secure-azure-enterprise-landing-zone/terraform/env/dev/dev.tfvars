@@ -228,3 +228,42 @@ vpn_connection_name = "dev-uks-s2s-vpn-connection"
 vm_name        = "dev-win-vm-01"
 vm_size        = "Standard_B2s"
 admin_username = "devadmin"
+
+# Stage 17 - Azure Virtual WAN
+
+virtual_wan_name           = "dev-uks-vwan"
+virtual_hub_name           = "dev-uks-vhub-01"
+virtual_hub_address_prefix = "10.50.0.0/23"
+
+# Stage 17 - vWAN Spoke VNets
+
+vwan_spoke_vnets = {
+  spoke1 = {
+    name                     = "dev-vwan-spoke1-vnet"
+    address_space            = ["10.60.0.0/16"]
+    workload_subnet_name     = "dev-vwan-spoke1-workload-subnet"
+    workload_subnet_prefixes = ["10.60.1.0/24"]
+  }
+
+  spoke2 = {
+    name                     = "dev-vwan-spoke2-vnet"
+    address_space            = ["10.70.0.0/16"]
+    workload_subnet_name     = "dev-vwan-spoke2-workload-subnet"
+    workload_subnet_prefixes = ["10.70.1.0/24"]
+  }
+}
+# Stage 17 - vWAN VPN Gateway
+
+vwan_vpn_gateway_name       = "dev-uks-vwan-vpn-gw"
+vwan_vpn_gateway_scale_unit = 1
+
+# Stage 17 - vWAN VPN Site
+
+vwan_vpn_site_name        = "dev-uks-vwan-vpn-site"
+vwan_onprem_address_cidrs = ["192.168.0.0/16"]
+vwan_onprem_public_ip     = "203.0.113.10"
+
+# Stage 17 - vWAN VPN Connection
+
+vwan_vpn_connection_name = "dev-uks-vwan-vpn-connection"
+vwan_vpn_link_name       = "dev-uks-vwan-vpn-link"
