@@ -214,7 +214,7 @@ spoke_address_spaces = [
 
 vpn_gateway_name           = "dev-uks-vpn-gw"
 vpn_gateway_public_ip_name = "dev-uks-vpn-gw-pip"
-vpn_gateway_sku            = "VpnGw1"
+vpn_gateway_sku            = "VpnGw1AZ"
 
 local_network_gateway_name = "dev-uks-onprem-lng"
 
@@ -226,7 +226,7 @@ onpremises_address_spaces = [
 vpn_connection_name = "dev-uks-s2s-vpn-connection"
 
 vm_name        = "dev-win-vm-01"
-vm_size        = "Standard_B2s"
+vm_size        = "Standard_D2s_v5"
 admin_username = "devadmin"
 
 # Stage 17 - Azure Virtual WAN

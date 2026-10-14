@@ -311,7 +311,28 @@ module "vpn_gateway" {
 
   tags = var.tags
 }
+# ============================================================
+# Traditional Hub-and-Spoke VNet Peering
+# ============================================================
 
+module "hub_spoke_peering" {
+  source = "./modules/hub-spoke-peering"
+
+  resource_group_name = module.resource_group.resource_group_name
+
+  hub_vnet_name    = module.hub_spoke_network.hub_vnet_name
+  hub_vnet_id      = module.hub_spoke_network.hub_vnet_id
+  spoke_vnet_ids   = module.hub_spoke_network.spoke_vnet_ids
+  spoke_vnet_names = module.hub_spoke_network.spoke_vnet_names
+
+  enable_gateway_transit = true
+
+  # Wait for the traditional VPN Gateway before enabling
+  # gateway transit on the spoke peerings.
+  depends_on = [
+    module.vpn_gateway
+  ]
+}
 module "local_network_gateway" {
   source = "./modules/local-network-gateway"
 
