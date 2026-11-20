@@ -1,4 +1,4 @@
-\# Project 01 — Secure Azure Enterprise Landing Zone
+﻿\# Project 01 â€” Secure Azure Enterprise Landing Zone
 
 
 
@@ -112,7 +112,64 @@ The landing zone is designed around the following principles:
 
 
 
-\## Current Architecture
+\## Implementation Roadmap and Engineering Milestones
+
+This Azure Enterprise Landing Zone has been developed incrementally through 18 engineering stages, progressing from foundational infrastructure to identity security, network segmentation, hybrid connectivity and Terraform engineering hardening.
+
+Each stage extends the same integrated infrastructure rather than deploying an unrelated environment.
+
+| Stage | Engineering Milestone | Status |
+|---|---|---|
+| 01 | Azure Resource Group and foundational infrastructure | Completed |
+| 02 | Azure Virtual Network design and deployment | Completed |
+| 03 | Subnet architecture and segmentation | Completed |
+| 04 | Network Security Groups and traffic controls | Completed |
+| 05 | Route Tables and User-Defined Routes | Completed |
+| 06 | Management VM network interface | Completed |
+| 07 | Windows management VM deployment | Completed |
+| 08 | Azure Bastion secure administrative access | Completed |
+| 09 | Azure Key Vault and workload RBAC integration | Completed |
+| 10 | Private Endpoints, Private DNS and storage security | Completed |
+| 11 | Security monitoring and network flow visibility | Completed |
+| 12 | Microsoft Defender for Servers Plan 2 | Completed |
+| 13 | Azure Policy and tag compliance | Completed |
+| 14 | Hub-and-Spoke VNet peering architecture | Completed |
+| 15 | Azure Firewall and forced spoke routing | Completed |
+| 16 | Site-to-Site VPN and hybrid connectivity | Completed |
+| 17 | Azure Virtual WAN architecture | Completed |
+| 18 | Terraform engineering improvements and security hardening | Completed |
+| 19 | Architecture capstone: Hub-and-Spoke versus Azure Virtual WAN | Planned |
+
+
+**Status note:** Completed refers to the documented engineering stage and its committed implementation work. It does not imply that every resource remains deployed or that every configuration has passed a fresh production-readiness assessment.
+
+### Key Engineering Capabilities Demonstrated
+
+**Infrastructure as Code:** Reusable Terraform modules, environment-specific configurations, provider version management and Azure Storage remote-state backend.
+
+**Network Security:** VNets, subnet segmentation, NSGs, route tables, Azure Firewall and controlled traffic routing.
+
+**Identity and Secrets Management:** Azure RBAC, workload access controls and Azure Key Vault integration.
+
+**Private Connectivity:** Private Endpoints, Private DNS and secured access to Azure services.
+
+**Monitoring and Governance:** Network flow visibility, Microsoft Defender for Servers and Azure Policy.
+
+**Hybrid Cloud Networking:** Hub-and-Spoke architecture, VPN Gateway, Local Network Gateway, Site-to-Site VPN and Azure Virtual WAN.
+
+**Engineering Validation:** Terraform configuration checks, Azure Portal verification, troubleshooting and technical documentation.
+
+### Architecture Evolution
+
+The landing zone has evolved from a single-VNet foundational design into an enterprise-style architecture exploring traditional Hub-and-Spoke networking and Azure Virtual WAN.
+
+The architecture diagrams and implementation evidence should be read alongside the Terraform configurations and Git commit history.
+
+Stage 19 will evaluate the two connectivity approaches and document their architectural, security, operational and cost trade-offs.
+
+---
+
+## Current Architecture
 
 
 
@@ -120,41 +177,41 @@ The landing zone is designed around the following principles:
 
 &#x20;                SECURE AZURE LANDING ZONE
 
-&#x20;                          │
+&#x20;                          â”‚
 
 &#x20;                   Resource Group
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          ▼
+&#x20;                          â–¼
 
 &#x20;                     dev-uks-vnet
 
 &#x20;                     10.10.0.0/16
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;         ┌────────────────┼────────────────┐
+&#x20;         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
 
-&#x20;         │                │                │
+&#x20;         â”‚                â”‚                â”‚
 
-&#x20;         ▼                ▼                ▼
+&#x20;         â–¼                â–¼                â–¼
 
 &#x20;    Web Subnet        App Subnet       Mgmt Subnet
 
 &#x20;  10.10.1.0/24      10.10.2.0/24     10.10.3.0/24
 
-&#x20;         │                │                │
+&#x20;         â”‚                â”‚                â”‚
 
 &#x20;     dev-web-nsg      dev-app-nsg      dev-mgmt-nsg
 
-&#x20;         │                │                │
+&#x20;         â”‚                â”‚                â”‚
 
 &#x20;     dev-web-rt       dev-app-rt       dev-mgmt-rt
 
-&#x20;                          │
+&#x20;                          â”‚
 
-&#x20;                          │
+&#x20;                          â”‚
 
 &#x20;               Private Endpoint Subnet
 
@@ -172,3 +229,4 @@ Each stage provides its own Terraform configuration, architecture documentation 
 | 01 | Azure Resource Group | [Stage 01](./Stage-01-Resource-Group/) |
 
 Additional stages will be linked as their documentation is completed.
+
