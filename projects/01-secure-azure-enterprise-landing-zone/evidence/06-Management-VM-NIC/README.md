@@ -38,10 +38,12 @@ See [Architecture and Design Rationale](architecture.md).
 ## Verification
 See [Verification and Troubleshooting](verification.md).
 
-## Implementation Evidence
-The Terraform module is present in the repository.
+## Stage 06 — Engineering Outcome
 
-Deployment status and live Azure verification must be confirmed separately.
+This stage extends the Azure enterprise landing zone established in Stages 01–05 by introducing the network interface required for the Windows management virtual machine.
 
+The Terraform configuration defines a network interface with dynamic private IP allocation, subnet integration, resource tagging, and reusable outputs.
 
+The implementation establishes the network connectivity component required for Stage 07 — Windows Management VM.
 
+Detailed architecture decisions and verification procedures are documented in the accompanying files.
