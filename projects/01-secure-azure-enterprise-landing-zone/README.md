@@ -1,4 +1,4 @@
-﻿\# Project 01 â€” Secure Azure Enterprise Landing Zone
+﻿\# Project 01 — Secure Azure Enterprise Landing Zone
 
 
 
@@ -169,59 +169,32 @@ Stage 19 will evaluate the two connectivity approaches and document their archit
 
 ---
 
+
 ## Current Architecture
 
-
-
 ```text
+             SECURE AZURE LANDING ZONE
+                         |
+                   Resource Group
+                         |
+                         v
+                    dev-uks-vnet
+                    10.10.0.0/16
+                         |
+           +-------------+-------------+
+           |             |             |
+           v             v             v
+       Web Subnet     App Subnet     Mgmt Subnet
+      10.10.1.0/24   10.10.2.0/24   10.10.3.0/24
+           |             |             |
+       dev-web-nsg    dev-app-nsg    dev-mgmt-nsg
+           |             |             |
+       dev-web-rt     dev-app-rt     dev-mgmt-rt
 
-&#x20;                SECURE AZURE LANDING ZONE
-
-&#x20;                          â”‚
-
-&#x20;                   Resource Group
-
-&#x20;                          â”‚
-
-&#x20;                          â–¼
-
-&#x20;                     dev-uks-vnet
-
-&#x20;                     10.10.0.0/16
-
-&#x20;                          â”‚
-
-&#x20;         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-
-&#x20;         â”‚                â”‚                â”‚
-
-&#x20;         â–¼                â–¼                â–¼
-
-&#x20;    Web Subnet        App Subnet       Mgmt Subnet
-
-&#x20;  10.10.1.0/24      10.10.2.0/24     10.10.3.0/24
-
-&#x20;         â”‚                â”‚                â”‚
-
-&#x20;     dev-web-nsg      dev-app-nsg      dev-mgmt-nsg
-
-&#x20;         â”‚                â”‚                â”‚
-
-&#x20;     dev-web-rt       dev-app-rt       dev-mgmt-rt
-
-&#x20;                          â”‚
-
-&#x20;                          â”‚
-
-&#x20;               Private Endpoint Subnet
-
-&#x20;                    10.10.254.0/26
-
-
+              Private Endpoint Subnet
+                   10.10.254.0/26
 ```
 
-
----
 ## Stage Documentation
 
 Each stage provides its own Terraform configuration, architecture documentation and verification evidence.
