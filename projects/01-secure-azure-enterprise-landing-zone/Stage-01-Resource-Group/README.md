@@ -65,18 +65,6 @@ Reusable child module:
 Environment example:
 - env/dev/dev.tfvars.example
 
-## Engineering Journey
-
-The original Stage 01 implementation created the Resource Group
-directly using azurerm_resource_group.
-
-During portfolio consolidation, the existing reusable Resource Group
-module from the integrated landing-zone project was incorporated into
-this standalone Stage 01 snapshot.
-
-This preserves the original engineering work while demonstrating
-the progression towards modular Terraform architecture.
-
 ## Validation Evidence
 
 The following commands were executed successfully during
@@ -137,3 +125,4 @@ landing-zone Terraform state.
 
 Independent deployment requires an isolated environment,
 appropriate permissions and a reviewed Terraform plan.
+
