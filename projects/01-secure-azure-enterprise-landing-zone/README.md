@@ -218,8 +218,10 @@ Stage 19 will evaluate the two connectivity approaches and document their archit
 &#x20;                    10.10.254.0/26
 
 
----
+```
 
+
+---
 ## Stage Documentation
 
 Each stage provides its own Terraform configuration, architecture documentation and verification evidence.
@@ -229,4 +231,7 @@ Each stage provides its own Terraform configuration, architecture documentation 
 | 01 | Azure Resource Group | [Stage 01](./Stage-01-Resource-Group/) |
 
 Additional stages will be linked as their documentation is completed.
+
+
+
 
