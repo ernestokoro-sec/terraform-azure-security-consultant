@@ -45,3 +45,10 @@ Deployment status and live Azure verification must be confirmed separately.
 
 
 
+## Terraform Source Snapshot
+
+The `main.tf`, `variables.tf` and `outputs.tf` files in this evidence directory are copies of the reusable network-interface module.
+
+The authoritative Terraform implementation remains in `terraform/modules/network-interface/`.
+
+These files are provided for convenient source-code review and should not be maintained independently.
