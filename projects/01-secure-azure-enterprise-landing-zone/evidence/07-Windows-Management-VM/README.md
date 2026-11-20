@@ -1,4 +1,4 @@
-﻿# Stage 07 â€” Windows Management VM
+﻿# Stage 07 — Windows Management VM
 
 ## Project
 Secure Azure Enterprise Landing Zone
@@ -31,9 +31,9 @@ The module attaches an existing NIC rather than creating a public IP address. Pa
 
 Key files:
 
-- [main.tf](main.tf) â€” Windows VM resource configuration
-- [variables.tf](variables.tf) â€” Module inputs
-- [outputs.tf](outputs.tf) â€” VM resource ID and managed identity principal ID outputs
+- [main.tf](main.tf) — Windows VM resource configuration
+- [variables.tf](variables.tf) — Module inputs
+- [outputs.tf](outputs.tf) — VM resource ID and managed identity principal ID outputs
 
 ## Architecture
 See [Architecture and Design Rationale](architecture.md).
@@ -41,10 +41,11 @@ See [Architecture and Design Rationale](architecture.md).
 ## Verification
 See [Verification and Troubleshooting](verification.md).
 
-## Stage 07 â€” Engineering Outcome
+## Stage 07 — Engineering Outcome
 
 This stage extends the enterprise landing zone developed in Stages 01â€“06 by defining the Windows management virtual machine that uses the private network interface introduced in Stage 06.
 
 The Terraform configuration combines a Windows Server 2022 image, configurable compute settings, operating-system storage, network attachment and system-assigned managed identity into a reusable VM module.
 
 The managed identity principal ID is exposed for identity-aware integration and role assignments in subsequent stages where required.
+

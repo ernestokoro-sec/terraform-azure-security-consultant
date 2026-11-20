@@ -1,4 +1,4 @@
-﻿# Stage 07 â€” Verification and Troubleshooting
+﻿# Stage 07 — Verification and Troubleshooting
 
 ## Verification scope
 These are verification procedures for the existing Windows VM module. They are not a claim that a live deployment has been validated during documentation preparation.
@@ -63,3 +63,4 @@ Replace placeholders with actual deployment values. Verify the VM is attached to
 
 ## Evidence to capture when verified
 Record the Terraform plan outcome, Azure VM provisioning and power status, NIC association, identity principal ID presence, and any remediations, with timestamps and sensitive values redacted.
+
