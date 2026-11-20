@@ -102,19 +102,6 @@ Azure deployment from this snapshot.
 - diagrams/ - Architecture diagrams
 - screenshots/ - Sanitised deployment evidence
 
-## Portfolio Objectives
-
-This engagement supports three objectives:
-
-**Learning:** Understand Azure Resource Groups, Terraform modules,
-variables, outputs, provider configuration and validation.
-
-**Consulting:** Demonstrate business requirements analysis,
-infrastructure design, governance considerations and verification.
-
-**Recruiter Visibility:** Provide a clearly documented,
-reusable Terraform implementation with verifiable technical outcomes.
-
 ## Deployment Safety
 
 This historical snapshot does not configure the active Azure
@@ -125,4 +112,5 @@ landing-zone Terraform state.
 
 Independent deployment requires an isolated environment,
 appropriate permissions and a reviewed Terraform plan.
+
 
