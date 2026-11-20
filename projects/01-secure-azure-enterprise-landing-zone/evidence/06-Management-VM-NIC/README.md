@@ -24,7 +24,7 @@ The module creates an Azure network interface with:
 The module does not create or associate a public IP address.
 
 ## Terraform Implementation
-[View Network Interface Module](../../terraform/modules/network-interface/)
+[View Stage 06 Terraform Configuration](main.tf)
 
 Key files:
 
@@ -52,3 +52,4 @@ The `main.tf`, `variables.tf` and `outputs.tf` files in this evidence directory 
 The authoritative Terraform implementation remains in `terraform/modules/network-interface/`.
 
 These files are provided for convenient source-code review and should not be maintained independently.
+
