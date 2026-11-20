@@ -1,24 +1,21 @@
-﻿\# Project 01 — Secure Azure Enterprise Landing Zone
+# Project 01 — Secure Azure Enterprise Landing Zone
 
 
 
-\## Project
+
+**Azure Cloud Security Consultant Portfolio**
 
 
 
-\*\*Azure Cloud Security Consultant Portfolio\*\*
+**Enterprise Azure Security Engineering and Consulting using Terraform**
 
 
 
-\*\*Enterprise Azure Security Engineering and Consulting using Terraform\*\*
+---
 
 
 
-\---
-
-
-
-\## Executive Summary
+## Executive Summary
 
 
 
@@ -34,11 +31,11 @@ The project is being developed incrementally using reusable Terraform modules an
 
 
 
-\---
+---
 
 
 
-\## Business Scenario
+## Business Scenario
 
 
 
@@ -50,33 +47,33 @@ The client requires an architecture that:
 
 
 
-\- Provides clear network segmentation.
+- Provides clear network segmentation.
 
-\- Controls inbound and outbound traffic.
+- Controls inbound and outbound traffic.
 
-\- Supports secure administrative access.
+- Supports secure administrative access.
 
-\- Minimises unnecessary Internet exposure.
+- Minimises unnecessary Internet exposure.
 
-\- Uses identity-based access instead of embedded credentials.
+- Uses identity-based access instead of embedded credentials.
 
-\- Protects secrets and sensitive data.
+- Protects secrets and sensitive data.
 
-\- Supports private access to Azure PaaS services.
+- Supports private access to Azure PaaS services.
 
-\- Provides central monitoring and security visibility.
+- Provides central monitoring and security visibility.
 
-\- Can be managed consistently through Terraform.
+- Can be managed consistently through Terraform.
 
-\- Can evolve into a larger enterprise architecture.
-
-
-
-\---
+- Can evolve into a larger enterprise architecture.
 
 
 
-\## Security Objectives
+---
+
+
+
+## Security Objectives
 
 
 
@@ -84,35 +81,35 @@ The landing zone is designed around the following principles:
 
 
 
-\- Network segmentation
+- Network segmentation
 
-\- Least privilege
+- Least privilege
 
-\- Controlled routing
+- Controlled routing
 
-\- Reduced public exposure
+- Reduced public exposure
 
-\- Identity-based authentication
+- Identity-based authentication
 
-\- Private connectivity
+- Private connectivity
 
-\- Central security monitoring
+- Central security monitoring
 
-\- Infrastructure as Code
+- Infrastructure as Code
 
-\- Repeatable deployment
+- Repeatable deployment
 
-\- Clear separation of responsibilities
+- Clear separation of responsibilities
 
-\- Production-style Terraform architecture
-
-
-
-\---
+- Production-style Terraform architecture
 
 
 
-\## Implementation Roadmap and Engineering Milestones
+---
+
+
+
+## Implementation Roadmap and Engineering Milestones
 
 This Azure Enterprise Landing Zone has been developed incrementally through 18 engineering stages, progressing from foundational infrastructure to identity security, network segmentation, hybrid connectivity and Terraform engineering hardening.
 
