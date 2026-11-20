@@ -28,9 +28,9 @@ The module does not create or associate a public IP address.
 
 Key files:
 
-- `main.tf` — NIC resource configuration
-- `variables.tf` — Module inputs
-- `outputs.tf` — NIC resource ID and private IP outputs
+- [main.tf](main.tf) — NIC resource configuration
+- [variables.tf](variables.tf) — Module inputs
+- [outputs.tf](outputs.tf) — NIC resource ID and private IP outputs
 
 ## Architecture
 See [Architecture and Design Rationale](architecture.md).
@@ -47,3 +47,4 @@ The Terraform configuration defines a network interface with dynamic private IP 
 The implementation establishes the network connectivity component required for Stage 07 — Windows Management VM.
 
 Detailed architecture decisions and verification procedures are documented in the accompanying files.
+
