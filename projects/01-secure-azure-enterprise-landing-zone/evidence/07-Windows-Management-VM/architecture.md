@@ -21,3 +21,4 @@ The administrator password is passed as a sensitive Terraform variable. Terrafor
 ## Dependency and design rationale
 Stage 06 provides the NIC; Stage 07 consumes its ID. The module output provides the VM resource ID and managed identity principal ID for subsequent integrations. This keeps the landing-zone implementation modular while preserving a clear sequence from networking to compute.
 
+

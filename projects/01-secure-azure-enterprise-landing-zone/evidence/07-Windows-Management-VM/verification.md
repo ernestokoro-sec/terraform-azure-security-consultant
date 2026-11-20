@@ -64,3 +64,4 @@ Replace placeholders with actual deployment values. Verify the VM is attached to
 ## Evidence to capture when verified
 Record the Terraform plan outcome, Azure VM provisioning and power status, NIC association, identity principal ID presence, and any remediations, with timestamps and sensitive values redacted.
 
+

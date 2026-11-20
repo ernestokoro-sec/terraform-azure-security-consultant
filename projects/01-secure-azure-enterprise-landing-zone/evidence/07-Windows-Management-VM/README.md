@@ -43,9 +43,10 @@ See [Verification and Troubleshooting](verification.md).
 
 ## Stage 07 — Engineering Outcome
 
-This stage extends the enterprise landing zone developed in Stages 01â€“06 by defining the Windows management virtual machine that uses the private network interface introduced in Stage 06.
+This stage extends the enterprise landing zone developed in Stages 01–06 by defining the Windows management virtual machine that uses the private network interface introduced in Stage 06.
 
 The Terraform configuration combines a Windows Server 2022 image, configurable compute settings, operating-system storage, network attachment and system-assigned managed identity into a reusable VM module.
 
 The managed identity principal ID is exposed for identity-aware integration and role assignments in subsequent stages where required.
+
 
