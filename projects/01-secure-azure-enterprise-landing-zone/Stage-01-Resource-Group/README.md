@@ -96,11 +96,11 @@ Azure deployment from this snapshot.
 
 ## Documentation
 
-- architecture.md - Architecture and consultant design rationale
-- verification.md - Verification and troubleshooting procedures
-- terraform/ - Complete Stage 01 Terraform configuration
-- diagrams/ - Architecture diagrams
-- screenshots/ - Sanitised deployment evidence
+- [Architecture and Consultant Design Rationale](./architecture.md)
+- [Verification and Troubleshooting Procedures](./verification.md)
+- [Complete Stage 01 Terraform Configuration](./terraform/)
+- [Architecture Diagrams](./diagrams/)
+- [Sanitised Deployment Evidence](./screenshots/)
 
 ## Deployment Safety
 
